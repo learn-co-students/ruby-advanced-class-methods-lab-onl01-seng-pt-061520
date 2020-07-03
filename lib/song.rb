@@ -26,7 +26,7 @@ class Song
 
   def self.create_by_name(name)
     song = self.create
-    song.save
+    song.name = name
     song
   end
 
@@ -46,6 +46,7 @@ class Song
     data = mp3.split(/\s+\-\s/)
     artist_name = data[0]
     name = data[1].split(".mp3").join
+    # can also use name = data[1].gsub(".mp3", "")
 
     song = self.new
     song.name = name
@@ -57,11 +58,11 @@ class Song
     data = mp3.split(/\s+\-\s/)
     artist_name = data[0]
     name = data[1].split(".mp3").join
+    # can also use name = data[1].gsub(".mp3", "")
 
-    song = self.new
+    song = self.create
     song.name = name
     song.artist_name = artist_name
-    song.save
     song
   end
 
