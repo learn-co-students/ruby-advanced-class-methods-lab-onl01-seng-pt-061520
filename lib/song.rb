@@ -23,6 +23,7 @@ class Song
     song = self.new
     song.name = song_str
     @@all << song
+    song
   end
     
  def self.find_by_name(song_str)
