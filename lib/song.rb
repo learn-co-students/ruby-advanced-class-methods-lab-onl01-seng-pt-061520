@@ -25,7 +25,8 @@ class Song
     @@all << song
   end
     
-  def 
+  def self.find_by_name(song_str)
+    song
 
   def save
     self.class.all << self
