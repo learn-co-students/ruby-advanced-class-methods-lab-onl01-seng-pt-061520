@@ -19,7 +19,10 @@ class Song
     song
   end
   
-  
+  def self.create_by_name(song_str)
+    song = self.new
+    song
+    
 
   def save
     self.class.all << self
