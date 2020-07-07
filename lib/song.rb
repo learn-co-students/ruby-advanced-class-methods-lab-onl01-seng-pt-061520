@@ -13,8 +13,10 @@ class Song
     song
   end
   
-  def self.new_self_name(song_str)
+  def self.new_by_name(song_str)
     song = self.new
+    song.name = song_str
+    
 
   def save
     self.class.all << self
