@@ -13,7 +13,7 @@ class Song
     song
   end
   
-  def self.new_self_name
+  def self.new_self_name(song_str)
 
   def save
     self.class.all << self
