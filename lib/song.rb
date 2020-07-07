@@ -5,6 +5,8 @@ class Song
   def self.all
     @@all
   end
+  
+  def 
 
   def save
     self.class.all << self
