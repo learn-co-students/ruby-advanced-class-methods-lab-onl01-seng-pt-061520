@@ -39,14 +39,12 @@ class Song
   end
 
   def self.alphabetical
-    #!!!you can sort an object by an attribute
     @@all.sort_by {|song| song.name}
   end
 
   def self.new_from_filename(filename)
     file_array = filename.split(/[-.]/)
     song = self.new
-    #binding.pry
     song.artist_name = file_array[0].strip
     song.name = file_array[1].strip
     song
