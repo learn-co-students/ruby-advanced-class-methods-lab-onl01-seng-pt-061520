@@ -16,7 +16,10 @@ class Song
   def self.new_by_name(song_str)
     song = self.new
     song.name = song_str
-    
+    song
+  end
+  
+  
 
   def save
     self.class.all << self
