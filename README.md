@@ -12,7 +12,7 @@ This lab has provided you with a base `Song` class that provides the following
 definition:
 
 ```ruby
-class Song
+class Song 
   attr_accessor :name, :artist_name
   @@all = []
 
