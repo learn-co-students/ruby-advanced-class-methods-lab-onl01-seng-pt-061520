@@ -8,67 +8,64 @@ class Song
 
   def save
     self.class.all << self
-    return song 
   end
 
-  def self.create
+  def self.create #class constructor
     song = self.new
-    #@@all << song
+    self.all << song
     song
-  end
-  
-  def self.new_by_name(name)
-    song = self.new 
-    song.name = name
-    song
-  end
-  
-  def self.create_by_name(name)
-    song = self.new 
-    song.name = name
-    @@all << song
-    song
-  end
-  
-  def self.find_by_name(name)
-    @@all.find{|x| x.name == name}
-  end
-  
-  def self.find_or_create_by_name(name)
-      #if self.find_by_name(name) == nil 
-        #self.create_by_name(name)
-      #else
-        #self.find_by_name(name)
-      #end
-      self.find_by_name(name) || self.create_by_name(name)
-      #the above statement is saying do this(if it is true) or that (if the first thing is not true and the second thing is true)
-  end
-  
-  def self.alphabetical()
-    #returns all the songs instances in ascending (a-z) alphabetical order.
-    @@all.sort_by{|x| x.name}
-  end
-  
-  
-  def self.new_from_filename(name)
-    song = self.new 
-    song.name = (name.split(" - ")[1].chomp(".mp3"))
-    song.artist_name = (name.split(" - ")[0])
-    song
-  end
-  
-  def self.create_from_filename(name)
-  #class method should not only parse the filename correctly but should also save the song
-    song = self.new
-    song.name = (name.split(" - ")[1].chomp(".mp3"))
-    song.artist_name = (name.split(" - ")[0])
-    @@all << song
-    song
-  end
-  
-  def self.destroy_all()
-    #reset the state of the @@all class variable to an empty array thereby deleting all previous song instances.
-    @@all.clear
   end
 
+  def self.new_by_name(title) #class constructor
+    song = self.new
+    song.name = title
+    song
+  end
+
+  def self.create_by_name(title) #class constructor
+    song = self.create
+    song.name = title
+    song
+  end
+
+  def self.find_by_name(title) #class finder
+    result = self.all.detect {|song| song.name == title}
+    result
+  end
+
+  def self.find_or_create_by_name(title)
+    #either return a matching song instance with that name or create a new song with the name and return the song instance
+    result = self.find_by_name(title)
+    if result
+      result
+    else
+      self.create_by_name(title)
+    end
+  end
+
+  def self.alphabetical
+    sorted = self.all.sort_by {|song| song.name}
+    sorted
+  end
+
+  def self.new_from_filename(filename)
+    song_array = filename.split(" - ")
+    song_array[1] = song_array[1].chomp(".mp3")
+    song = self.new
+    song.name = song_array[1]
+    song.artist_name = song_array[0]
+    song
+  end
+
+  def self.create_from_filename(filename)
+    result = self.new_from_filename(filename)
+    song = self.create
+    song.name = result.name
+    song.artist_name = result.artist_name
+    song
+  end
+
+  def self.destroy_all
+    self.all.clear
+  end
 end
