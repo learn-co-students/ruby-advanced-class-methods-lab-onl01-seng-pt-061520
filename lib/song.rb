@@ -61,7 +61,7 @@ class Song
     parts = filename.split(" - ")
     artist_name = parts[0]
     song_name = parts[1].gsub(".mp3", "")
-
+# Sub versus gsub. The sub() method replaces just the first instance of a string with another. Gsub meanwhile replaces all instances.
     song = self.create
     song.name = song_name
     song.artist_name = artist_name
